@@ -31,8 +31,8 @@
 \tcbEXTERNALIZE
 \usepackage{tcolorbox.doc.s_snippet}
 %\tcbset{external/PassOptionsToPackage={cache=false}{minted}}
-\ShellEscape{mkdir external}
-\ShellEscape{mkdir solutions}
+\ShellEscape{mkdir -p external}   % to avoid warning message on linux system
+\ShellEscape{mkdir -p solutions}
 
 \RequirePackage{csquotes}
 \RequirePackage[style=numeric-comp,sorting=nyt,
@@ -58,11 +58,40 @@
 
 %\tcbset{draftmode}
 \tcbset{/tcb/external/-}% for final run
-%\includeonly{tcolorbox.doc.documentation}
 
+% to work on each part individualy !
+%\includeonly{tcolorbox.doc.abstract}
+%\includeonly{tcolorbox.doc.intro}
+%\includeonly{tcolorbox.doc.quickref}
+%\includeonly{tcolorbox.doc.coremacros}
+%\includeonly{tcolorbox.doc.coreoptions}
+%\includeonly{tcolorbox.doc.initoptions}
+%\includeonly{tcolorbox.doc.sidebyside}
+%\includeonly{tcolorbox.doc.verbatim}
+%\includeonly{tcolorbox.doc.recording}
+%\includeonly{tcolorbox.doc.technical}
+%\includeonly{tcolorbox.doc.skins}
+%\includeonly{tcolorbox.doc.graphics}
+%\includeonly{tcolorbox.doc.filling}
+%\includeonly{tcolorbox.doc.vignette}
+%\includeonly{tcolorbox.doc.raster}
+%\includeonly{tcolorbox.doc.listings}
+%\includeonly{tcolorbox.doc.theorems}
+%\includeonly{tcolorbox.doc.breakable}
+%\includeonly{tcolorbox.doc.magazine}
+%\includeonly{tcolorbox.doc.poster}
+%\includeonly{tcolorbox.doc.fitting}
+%\includeonly{tcolorbox.doc.hooks}
+%\includeonly{tcolorbox.doc.xparse}
+%\includeonly{tcolorbox.doc.external}
+%\includeonly{tcolorbox.doc.documentation}
+% after the appendix
+%\includeonly{tcolorbox.doc.picturecredits,tcolorbox.doc.references,tcolorbox.doc.index}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{document}
+\shorthandoff{:}     % french option of babel change catcode of colon ':'
+
 \include{tcolorbox.doc.abstract}
 \include{tcolorbox.doc.intro}
 \include{tcolorbox.doc.quickref}

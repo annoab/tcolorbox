@@ -3,17 +3,18 @@
 \renewcommand*\l@subsection{\@dottedtocline{2}{1.5em}{2.7em}}
 \renewcommand*\l@subsubsection{\@dottedtocline{3}{4.2em}{3.2em}}
 
+\RequirePackage[utf8]{inputenc}
 \RequirePackage[T1]{fontenc}
-\RequirePackage[latin1]{inputenc}
-\RequirePackage[english]{babel}
+\RequirePackage[french]{babel}
 \RequirePackage{lmodern,parskip,array,ifthen,calc}
 \RequirePackage{amsmath,amssymb}
 \RequirePackage[svgnames,table,hyperref]{xcolor}
 \RequirePackage{tikz}
-\RequirePackage{varioref}
+\RequirePackage[french]{varioref}
 \RequirePackage[makeindex]{imakeidx}
 \RequirePackage[pdftex,bookmarks,raiselinks,pageanchor,hyperindex,colorlinks]{hyperref}
-\RequirePackage{bookmark,varwidth,cleveref,incgraph}
+\RequirePackage{bookmark,varwidth,incgraph}
+\RequirePackage[french]{cleveref}
 
 \RequirePackage[a4paper,left=2.5cm,right=2.5cm,top=1.5cm,bottom=1.5cm,
     marginparsep=3mm,marginparwidth=18mm,
@@ -259,3 +260,20 @@
   spread sidewards,fuzzy halo=1mm with blue!50!gray}
 
 \renewcommand\section{\@startsection{section}{1}{\z@}{\z@}{5mm}{\section@box}}
+
+% https://tex.stackexchange.com/questions/74860/unexpected-clash-between-babel-and-pgf-spy\makeatletter
+ \def\tikz@lib@spy@parse@opt[#1]{%
+     \let\tikz@spy@next=\tikz@lib@spy@parse@opta%
+     \ifnum\the\catcode`\;=\active\relax
+      \let\tikz@spy@next=\tikz@lib@spy@parse@opta@activesemicolon
+     \fi
+   \pgfutil@ifnextchar x{\tikz@spy@next[#1]}{\tikz@spy@next[#1]}%]
+ }
+ {
+ \catcode`\;=\active
+ \gdef\tikz@lib@spy@parse@opta@activesemicolon[#1]on#2in node#3;{%
+   \pgfutil@g@addto@macro\tikz@lib@spy@collection{\tikz@lib@spy@do{#1}{#2}{#3}}%
+ }
+ }
+ \makeatother
+
