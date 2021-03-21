@@ -1,7 +1,7 @@
-%% The LaTeX package tcolorbox - version 4.13 (2018/03/22)
+%% The LaTeX package tcolorbox - version 4.42 (2020/10/09)
 %%
 %% -------------------------------------------------------------------------------------------
-%% Copyright (c) 2006-2018 by Prof. Dr. Dr. Thomas F. Sturm <thomas dot sturm at unibw dot de>
+%% Copyright (c) 2006-2020 by Prof. Dr. Dr. Thomas F. Sturm <thomas dot sturm at unibw dot de>
 %% -------------------------------------------------------------------------------------------
 %%
 %% This work may be distributed and/or modified under the
@@ -1050,3 +1050,145 @@ version 4.13 (2018/03/22)
   * new option:
     'graphics orientation'
 
+version 4.14 (2018/07/26)
+- bug fix (#40): 'tikz lower' and 'tikz upper' failed to take more than one parameter
+- '\tcblistof' issues a warning if tocdepth is lower than 1 (#42)
+- macro definition of \tcolorbox@label removed from aux file (#47)
+- documentation adapted to the changed argument collection of the xparse package (#43)
+- new options: 'index', 'index*'
+- library 'breakable':
+  * (#41) 'title after break' inherits the title alignment now
+    (may change output of existing documents!)
+  * new options 'extras title after break', 'no extras title after break'
+
+version 4.15 (2018/12/07)
+- bug fix (#40): 'tikz upper', 'tikz lower' failed to take more than one parameter (again)
+- bug fix: 'tcboxedraster' could not be set to be 'breakable'
+- library 'breakable': Implementation of 'pad after break' changed to be
+  consistent with a boxed title.
+- library 'raster':
+  * dimension settings changed to be more robust
+  * new options (#52) 'raster width center', 'raster width flush left', 'raster width flush right'
+- Example source code of 'tcolorbox-example-poster' and 'tcolorbox-tutorial-poster'
+  adapted to be compatible with lipsum package version 2.0
+
+version 4.20 (2019/03/02)
+- bug fix (#60): \multicolumn could not be used for first cell with option 'tabularx'
+- internal colors names renamend and offially documented (Section 9.5 Color Names):
+  'tcbcolframe', 'tcbcolback', 'tcbcolbacktitle', 'tcbcolbacklower',
+  'tcbcolupper', 'tcbcollower', 'tcbcoltitle'
+- listingsutf8 compatability better documented (#58)
+- semantic changed for options: 'after upper*', 'after lower*'
+- new options: 'before upper*', 'before lower*', 'titlebox', 'nirvana'
+- library 'skins':
+  * new options: 'beamer hidden', 'beamer alerted', 'hide', 'alert'
+  * option 'only' moved from package to skins library
+- new documentation section '13 Beamer Support'
+
+version 4.21 (2019/09/19)
+- bug fix (#71): 'shield externalize' should be effective on all tcolorbox layers
+- bug fix (#76): 'spread inwards', 'spread outwards', 'spread sidewards' gave
+  wrong results for some document geometry settings
+- new options (#75): 'tabulars', 'tabulars*'
+- library 'extras':
+  * bug fix: all 'extras ...' options from library 'hooks' took code instead of options
+  * new options (#73): 'minted options app', 'minted options pre',
+      'listing options app', 'listing options pre'
+- library 'xparse':
+  * bug fix: options 'IfNoValueTF', 'IfValueTF', 'IfBooleanTF' failed
+      to recognize arguments in some code line breaks situations
+- library 'documentation':
+  TikZ path operation documentation (#65):
+  * new color name: 'Fade'
+  * new macros and environments: '\colFade', 'docPathOperation',
+      '\refPathOperation', '\refPathOperation*'
+  * new options: 'color fade', 'color path', 'doc label', 'doc head path',
+      'before doc body path', 'after doc body path'
+  * new language string: 'path', 'paths'
+- documentation: checkerbox for opacity examples was too dark
+
+version 4.22 (2019/11/15)
+- bug fix (#79) in library 'xparse':
+  'sidebyside adapt' did not respect color, font, and other options.
+- bug fix (#85) in library 'raster':
+  'raster before skip' and 'raster after skip' did not accept glue anymore.
+- new initialization option (#80): 'reset counter on overlays'
+
+version 4.30 (2020/04/28)
+- bug fix (#88): 'parskip' and 'noparskip' had side-effects for the box content
+                 in combination with 'height fill' and 'parbox=false'
+- bug fix (#90) in library 'documentation':
+  initialize 'doc description' for every docXXX to be empty
+- Internal box counter renamed to remove warnings when using \includeonly
+- library 'documentation':
+  * major code overhaul to support simultaneous documentation of
+    similar commands, environments, keys, path operations (#89).
+  * Note that the new code reserves a small additional amount of vertical space
+    for documented macros which may result in changed page breaks.
+  * Note that documentation heads are now embedded inside a 'raster'
+    which requires other customizations for vertical space (if needed)
+  * new macros and environments: 'docCommands', 'docEnvironments',
+      'docKeys', '\tcbmakedocSubKeys', 'docPathOperations'
+  * new options: 'doc index' (#91), 'doc name', 'doc parameter',
+      'doc keypath', 'doc sort index', 'doc no index',
+      'doc raster command', 'doc raster environment', 'doc raster key',
+      'doc raster path', 'doc raster'
+  * additional option setting for: '\docAuxCommand', '\docAuxEnvironment',
+      '\docAuxKey', '\docValue', '\docColor', '\docCounter', '\docLength'
+  * superfluous and undocumented opton 'color frame' removed (#94)
+  * '\refAux' and '\refAuxcs' are not longer colored, if colorlinks=false (#95)
+- library 'listingsutf8':
+  safeguard against compiling with other engines than pdf(la)tex (#92)
+- library 'fitting':
+  '\tcbfitdim' is described in more detail (#96)
+- library 'poster':
+  poster width and height caveats described in more detail (#98)
+
+version 4.31 (2020/07/31)
+- bug fix (#101): \tcbincludepdf did not work for lualatex
+- bug fix (#103): Several tests had a missing \relax
+- bug fix (#106): Breakable tcolorbox may overlap with following the text
+- bug fix: 'space to' did not result in a stable value
+- Internal change: all 'code 2 args' replaced by 'code n args={2}'
+- documentation typo corrections (#102)
+- library 'documentation':
+  * indention of <environment content> changed to \ttfamily (#100)
+
+version 4.32 (2020/09/17)
+- documentation typo corrections (#108) and enhancements (#109)
+- bug fix (#112): 'index format=doc' caused redefinition of '\_'
+    among other errors.
+- bug fix: 'valign=scale*' was erroneous.
+- enhancement (#110): color stack support for breakable boxes (pdflatex and lualatex)
+    to let colors survive a break to the next partial box.
+- library 'xparse':
+  * new options (#111): 'IfNoValueT', 'IfNoValueF', 'IfValueT', 'IfValueF',
+      'IfBooleanT', 'IfBooleanF'
+
+version 4.40 (2020/09/25)
+- bug fix (#114): 'IfBooleanT', 'IfBooleanF'
+- bug fix (#117): 'widget' set 'toprule at break' and needed the breakable library
+- (bug) fix: style 'marker' set 'breakable' and needed the breakable library
+- (#113) 'capture=hbox' applies '\@parboxrestore' now to allow e.g. hbox style
+    listings inside indented environments like itemize
+- (#2) support 'hbox' for 'minted' listings
+- (#115) New default vertical space options
+        'before skip balanced', 'after skip balanced', 'beforeafter skip balanced'
+  NOTE: These options replace the current default options
+        'parskip', 'noparskip', 'autoparskip'
+  WARNING: Old documents may need adapted manual page breaks where used.
+           Otherwise: Use \tcbsetforeverylayer{autoparskip}
+           to restore the old behavior!
+- 'before skip' and 'before skip balanced' do not insert glue now, if
+  the tcolorbox is the first element in a minipage (or sourrounding tcolorbox)
+
+version 4.41 (2020/09/29)
+- bug fix (#120): color bleeding for xelatex and breakable boxes (since 4.32)
+
+version 4.42 (2020/10/09)
+- due to several problems with the color algorithm introduced with version 4.32,
+  essentially reversion to the proven pre 4.32 method.
+  * support of luacolor persists (since 4.32)
+  * color stacks (by pdfcol) are not mandatory any more,
+    but are optional now with 'use color stack'. Note that effects of whatsits
+    on the vertical space have to be expected.

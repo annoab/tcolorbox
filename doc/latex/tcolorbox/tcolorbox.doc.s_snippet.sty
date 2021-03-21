@@ -114,14 +114,14 @@
 \begin{tcbverbatimwrite}{\jobname_preamble_K.tex}
 \usepackage{amsthm}
 
-\theoremstyle{plain}%    from 'amsthm'
-\newtheorem{lem}{Lemma}% from 'amsthm'
+\theoremstyle{plain}%    from `amsthm'
+\newtheorem{lem}{Lemma}% from `amsthm'
 
 \tcolorboxenvironment{lem}{
   enhanced jigsaw,colframe=cyan,interior hidden,
   breakable,before skip=10pt,after skip=10pt }
 
-\tcolorboxenvironment{proof}{% 'proof' from 'amsthm'
+\tcolorboxenvironment{proof}{% `proof' from `amsthm'
   blanker,breakable,left=5mm,
   before skip=10pt,after skip=10pt,
   borderline west={1mm}{0pt}{red}}
@@ -132,7 +132,7 @@
 \begin{tcbverbatimwrite}{\jobname_preamble_L.tex}
 % \tcbuselibrary{skins,xparse}
 
-\NewTColorBox[auto counter,number within=section]{exercise}{+O{}}{%
+\NewTColorBox[auto counter,number within=section]{exercise}{+!O{}}{%
   enhanced,colframe=green!20!black,colback=yellow!10!white,coltitle=green!40!black,
   fonttitle=\bfseries,
   underlay={\begin{tcbclipinterior}
@@ -177,7 +177,8 @@
   colbacktitle=red!50!yellow,before skip=6pt,after skip=6pt,
   title={#2},#1}
 
-\newtcbexternalizetcolorbox{exmyownlisting}{myownlisting}{minipage}%
+\newtcbexternalizetcolorbox{exmyownlisting}{myownlisting}%
+  {minipage,environment with percent=false}%
   {before skip=6pt,after skip=6pt}% same values as for mylisting
 \end{tcbverbatimwrite}
 \input{\jobname_preamble_M.tex}

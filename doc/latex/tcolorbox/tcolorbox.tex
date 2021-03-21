@@ -1,9 +1,9 @@
 % \LaTeX-Main\
-%% The LaTeX package tcolorbox - version 4.13 (2018/03/22)
+%% The LaTeX package tcolorbox - version 4.42 (2020/10/09)
 %% tcolorbox.tex: Manual
 %%
 %% -------------------------------------------------------------------------------------------
-%% Copyright (c) 2006-2018 by Prof. Dr. Dr. Thomas F. Sturm <thomas dot sturm at unibw dot de>
+%% Copyright (c) 2006-2020 by Prof. Dr. Dr. Thomas F. Sturm <thomas dot sturm at unibw dot de>
 %% -------------------------------------------------------------------------------------------
 %%
 %% This work may be distributed and/or modified under the
@@ -18,10 +18,10 @@
 %%
 %% This work consists of all files listed in README
 %%
-% arara: pdflatex: { shell: yes }
+% arara: pdflatex: { shell: yes, synctex: yes }
 % arara: biber
-% arara: pdflatex: { shell: yes }
-% arara: pdflatex: { shell: yes }
+% arara: pdflatex: { shell: yes, synctex: yes }
+% arara: pdflatex: { shell: yes, synctex: yes }
 % arara: pdflatex: { shell: yes, synctex: yes }
 % arara: pdflatex: { shell: yes, synctex: yes }
 %
@@ -31,8 +31,8 @@
 \tcbEXTERNALIZE
 \usepackage{tcolorbox.doc.s_snippet}
 %\tcbset{external/PassOptionsToPackage={cache=false}{minted}}
-\ShellEscape{mkdir external}
-\ShellEscape{mkdir solutions}
+\tcbAUXmkdir{external}
+\tcbAUXmkdir{solutions}
 
 \RequirePackage{csquotes}
 \RequirePackage[style=numeric-comp,sorting=nyt,
@@ -43,8 +43,8 @@
 \setlength{\bibitemsep}{\smallskipamount}
 \addbibresource{tcolorbox.doc.bib}
 
-\def\version{4.13}%
-\def\datum{2018/03/22}%
+\def\version{4.42}%
+\def\datum{2020/10/09}%
 \makeindex
 
 \hypersetup{
@@ -55,15 +55,20 @@
 }
 
 \usepackage{pgfplots}
+\pgfplotsset{compat=1.17}
 
+\nocite{breitenlohner:1998a}
+
+%\geometry{showframe}
 %\tcbset{draftmode}
 \tcbset{/tcb/external/-}% for final run
-%\includeonly{tcolorbox.doc.documentation}
+%\includeonly{tcolorbox.doc.breakable}
 
+%\hypersetup{colorlinks=false}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{document}
-\include{tcolorbox.doc.abstract}
+\input{tcolorbox.doc.abstract}
 \include{tcolorbox.doc.intro}
 \include{tcolorbox.doc.quickref}
 \include{tcolorbox.doc.coremacros}
@@ -76,6 +81,7 @@
 \include{tcolorbox.doc.skins}
 \include{tcolorbox.doc.graphics}
 \include{tcolorbox.doc.filling}
+\include{tcolorbox.doc.beamer}
 \include{tcolorbox.doc.vignette}
 \include{tcolorbox.doc.raster}
 \include{tcolorbox.doc.listings}

@@ -14,8 +14,10 @@ they all do the same thing, i.\,e.\ displaying listings with or without typesett
 the listing in \LaTeX\ parallel.
 The difference is the underlying \LaTeX\ package which does the core job for
 displaying a listing. So, typically, you need just \emph{one} of these
-libraries. If you do not have a clue, which one of them you should use,
-you should take \mylib{listingsutf8}.
+libraries. If you do not have a clue which one of them you should use
+and you are using |pdflatex|, you should take \mylib{listingsutf8}.
+If you are using |xelatex| or |lualatex|, you should take \mylib{listings}
+as |xelatex| and |lualatex| are not compatible with \mylib{listingsutf8}.
 
 \begin{marker}
 The order in which the libraries are included influences the default settings and
@@ -25,12 +27,12 @@ the settings of a previous loaded library. A library is never loaded twice.
 
 
 \subsubsection{Loading \mylib{listings}}
-This library uses the package |listings| \cite{heinz:2015a} to typeset
+This library uses the package |listings| \cite{hoffmann:listings} to typeset
 listings. It is loaded by a package option or inside the preamble by:
 \begin{dispListing}
 \tcbuselibrary{listings}
 \end{dispListing}
-This also loads the package |listings| \cite{heinz:2015a}.
+This also loads the package |listings| \cite{hoffmann:listings}.
 
 The \refKey{/tcb/listing engine} is set to |listings| by the library.
 To reactivate this setting, if overwritten by other libraries, use
@@ -40,18 +42,20 @@ To reactivate this setting, if overwritten by other libraries, use
 
 \subsubsection{Loading \mylib{listingsutf8}}
 \begin{marker}
-This library is not needed (and troublesome) when using Xe\LaTeX.
+This library is not needed (and troublesome) when using Xe\LaTeX\ or Lua\LaTeX.
+Therefore, loading this library is automatically replaced by loading
+\mylib{listings} only, if pdf\LaTeX\ is \emph{not} used.
 \end{marker}
 To extend |listings| for UTF-8 encoded sources, you can use the support from
-the package |listingsutf8| \cite{oberdiek:2011a} by loading the library
+the package |listingsutf8| \cite{oberdiek:listingsutf8} by loading the library
 variant \mylib{listingsutf8}.
 \begin{dispListing}
 \tcbuselibrary{listingsutf8}
-\tcbset{listing utf8=latin1}% optional; 'latin1' is the default.
+\tcbset{listing utf8=latin1}% optional; `latin1' is the default.
 \end{dispListing}
 This also loads the library \mylib{listings}
-and the packages |listings| \cite{heinz:2015a}
-and |listingsutf8| \cite{oberdiek:2011a}.
+and the packages |listings| \cite{hoffmann:listings}
+and |listingsutf8| \cite{oberdiek:listingsutf8}.
 
 The \refKey{/tcb/listing engine} is set to |listings| by the library.
 To reactivate this setting, if overwritten by other libraries, use
@@ -62,19 +66,19 @@ To reactivate this setting, if overwritten by other libraries, use
 
 \clearpage
 \subsubsection{Loading \mylib{minted}}
-This library uses the package |minted| \cite{poore:2015a} to typeset
+This library uses the package |minted| \cite{poore:minted} to typeset
 listings. It is loaded by a package option or inside the preamble by:
 \begin{dispListing}
 \tcbuselibrary{minted}
 \end{dispListing}
-This also loads the package |minted| \cite{poore:2015a}.
+This also loads the package |minted| \cite{poore:minted}.
 
 \begin{marker}
-The |minted| package uses the external tool |Pygments| \cite{pygments:2013}
+The |minted| package uses the external tool |Pygments| \cite{pygments:web}
 to apply syntax highlighting. It has to be installed and set up, before the
-library can be used, see \cite{poore:2015a} and \cite{pygments:2013}.
+library can be used, see \cite{poore:minted} and \cite{pygments:web}.
 The |tcolorbox| library \mylib{minted} does not work, if the package
-|minted| \cite{poore:2015a} does not work.
+|minted| \cite{poore:minted} does not work.
 \end{marker}
 
 The \refKey{/tcb/listing engine} is set to |minted| by the library.
@@ -230,7 +234,7 @@ This is my \LaTeX\ box.
   colback=red!5!white,
   colframe=red!75!black,
   fonttitle=\bfseries,
-  title=#1}
+  title={#1}}
 
 \begin{mybox}{Listing Box}
 This is my \LaTeX\ box.
@@ -242,7 +246,7 @@ This is my \LaTeX\ box.
   colback=red!5!white,
   colframe=red!75!black,
   fonttitle=\bfseries,
-  title=#2,#1}
+  title={#2},#1}
 
 \begin{mybox}[listing only]
   {Listing Box}
@@ -320,7 +324,7 @@ This is my \LaTeX\ box.
 \subsection{Option Keys of the \mylib{listings} Library}\label{sec:speclistingkeys}
 
 \begin{docTcbKey}{listing options}{=\meta{key list}}{no default, initially |style=tcblatex|}
-  Sets the options from the package |listings| \cite{heinz:2015a}
+  Sets the options from the package |listings| \cite{hoffmann:listings}
   which are used during typesetting of the listing.
   For \LaTeX\ listings, there is a predefined |listings| style named |tcblatex|
   which can be used.
@@ -350,7 +354,7 @@ All \textit{listings} options removed.
 
 \begin{docTcbKey}{listing style}{=\meta{style}}{no default, initially |tcblatex|}
   Abbreviation for |listing options={style=...}|. This key sets a \meta{style}
-  for the |listings| package, see \cite{heinz:2015a}.
+  for the |listings| package, see \cite{hoffmann:listings}.
   For \LaTeX, there is a predefined style named |tcblatex|.
 \begin{dispExample}
 \begin{tcblisting}{colback=red!5!white,colframe=red!75!black,
@@ -422,7 +426,9 @@ For an combined example of using |\lstinline| inside a |tcolorbox|, see
 \clearpage
 \subsection{Option Keys of the \mylib{listingsutf8} Library}
 \begin{marker}
-The \mylib{listingsutf8} library is not needed (and troublesome) when using Xe\LaTeX.
+The \mylib{listingsutf8} library is not needed (and troublesome) when using Xe\LaTeX\ or Lua\LaTeX.
+Therefore, loading this library is automatically replaced by loading
+\mylib{listings} only, if pdf\LaTeX\ is \emph{not} used.
 \end{marker}
 
 The \mylib{listingsutf8} library is an extension of the
@@ -431,10 +437,19 @@ all options from \Vref{sec:speclistingkeys} are applicable.
 
 \begin{docTcbKey}{listing utf8}{=\meta{one-byte-encoding}}{style, no default, initially |latin1|}
   Abbreviation for using \refKey{/tcb/listing inputencoding}
-  together with UTF-8 support from the package |listingsutf8| \cite{oberdiek:2011a}.
+  together with UTF-8 support from the package |listingsutf8| \cite{oberdiek:listingsutf8}.
   This option is available only for the library variant \mylib{listingsutf8}.
   The \meta{one-byte-encoding} is one of
-  the applicable encodings from \cite{oberdiek:2011a}, e.\,g.\ |latin1|.
+  the applicable encodings from \cite{oberdiek:listingsutf8}, e.\,g.\ |latin1|
+  which is the default.\par
+  Be aware that this means restriction to this specific \meta{one-byte-encoding}:
+  e.\,g.\ |latin1| comprises umlauts and other accented characters, but not
+  the Euro sign. If you want to use the |listings| package \emph{and} \flqq real\frqq\
+  UTF-8 source code, then do \emph{not} use \mylib{listingsutf8} but \mylib{listings}
+  with
+  \refKey{/tcb/listing inputencoding}|=utf8|
+  \emph{and} with specific manual hacks for specific UTF-8-encoded characters.
+
 \end{docTcbKey}
 
 See further options in \Vref{sec:commonlistingkeys}.
@@ -443,13 +458,13 @@ See further options in \Vref{sec:commonlistingkeys}.
 \subsection{Option Keys of the \mylib{minted} Library}
 
 \begin{docTcbKey}{minted language}{=\meta{programming language}}{no default, initially |latex|}
-Sets a \meta{programming language} known to |Pygments| \cite{pygments:2013}.
+Sets a \meta{programming language} known to |Pygments| \cite{pygments:web}.
 \begin{dispExample}
 \begin{tcblisting}{listing engine=minted,minted style=trac,
   minted language=java,
   colback=red!5!white,colframe=red!75!black,listing only}
     public class HelloWorld {
-      // A 'Hello World' in Java
+      // A `Hello World' in Java
       public static void main(String[] args) {
         System.out.println("Hello World!");
       }
@@ -461,7 +476,7 @@ Sets a \meta{programming language} known to |Pygments| \cite{pygments:2013}.
 
 \begin{docTcbKey}[][doc updated={2017-07-05}]{minted options}{=\meta{key list}}{no default, initially
     |tabsize=2,fontsize=\textbackslash small,|\linebreak|breaklines,autogobble|}
-  Sets the options from the package |minted| \cite{poore:2015a}
+  Sets the options from the package |minted| \cite{poore:minted}
   which are used during typesetting of the listing.
 \begin{dispExample}
 % \tcbuselibrary{skins}
@@ -476,7 +491,7 @@ Sets a \meta{programming language} known to |Pygments| \cite{pygments:2013}.
 
 \begin{myjava}
   public class HelloWorld {
-    // A 'Hello World' in Java
+    // A `Hello World' in Java
     public static void main(String[] args) {
       System.out.println("Hello World!");
     }
@@ -487,7 +502,7 @@ Sets a \meta{programming language} known to |Pygments| \cite{pygments:2013}.
 
 \clearpage
 \begin{docTcbKey}{minted style}{=\meta{style}}{no default, initially unset}
-Sets a \meta{style} known to |Pygments| \cite{pygments:2013}. This is
+Sets a \meta{style} known to |Pygments| \cite{pygments:web}. This is
 independent from \refKey{/tcb/minted options}. Note that styles are always
 applied globally; all following examples will be set in the given \meta{style}
 until a new style is set. Also note that
@@ -624,7 +639,7 @@ This is a \LaTeX\ example.
 \end{dispExample}
 \end{docTcbKey}
 
-%\enlargethispage*{1cm}
+\clearpage
 
 \begin{docTcbKey}[][doc new=2014-11-14]{pdf comment}{\colOpt{=\meta{filename}}}{style, default listing file, initially unset}
   Uses a PDF file denoted by \meta{filename} as \textit{comment} for the listing.
@@ -733,6 +748,7 @@ This is a \LaTeX\ example.
 \end{dispExample}
 \end{docTcbKey}
 
+\clearpage
 
 \begin{docTcbKey}{text outside listing}{}{no value}
 Typesets the environment content side by side as listing in a |tcolorbox|
@@ -749,7 +765,7 @@ This is a \LaTeX\ example.
 \end{docTcbKey}
 
 
-\clearpage
+
 \begin{docTcbKey}{listing side comment}{}{style, no value}
 Typesets the environment content side by side as listing in the left (upper)
 part and a given comment in the right (lower) part.
@@ -775,8 +791,8 @@ This is a \LaTeX\ example.
 \end{dispExample}
 \end{docTcbKey}
 
+\clearpage
 
-\enlargethispage*{2cm}
 \begin{docTcbKey}{listing outside comment}{}{no value}
 Typesets the environment content side by side as listing in a |tcolorbox|
 and a given comment outside the box in the right part of the page.
@@ -809,7 +825,7 @@ This is a \LaTeX\ example.
 \end{docTcbKey}
 
 
-\clearpage
+
 \begin{docTcbKey}{listing above text}{}{no value}
   Typesets the environment content as listing in a |tcolorbox|
   and as compiled text outside and below the box.
@@ -831,6 +847,7 @@ This is a \LaTeX\ example.
   The distance between box and text is controlled by \refKey{/tcb/after}.
 \end{docTcbKey}
 
+\clearpage
 
 \begin{docTcbKey}{text above listing}{}{no value}
   Typesets the environment content as listing in a |tcolorbox|
@@ -854,7 +871,7 @@ This is a \LaTeX\ example.
 \end{docTcbKey}
 
 
-\clearpage
+
 \begin{docTcbKey}{listing above comment}{}{no value}
   Typesets the environment content as listing in a |tcolorbox|
   and a given comment outside and below the box.
@@ -877,6 +894,7 @@ This is a \LaTeX\ example.
   The distance between box and comment is controlled by \refKey{/tcb/after}.
 \end{docTcbKey}
 
+\clearpage
 
 \begin{docTcbKey}{comment above listing}{}{no value}
   Typesets the environment content as listing in a |tcolorbox|
@@ -1164,9 +1182,9 @@ For the examples, three environments |texexp|, |texexptitled|,
 and |texexptitledspec| are defined with automatic numbering.
 
 \begin{itemize}
-\item |texexp| is used for untitled examles,
-\item |texexptitled| is used for titled examles,
-\item |texexptitledspec| is used for titled examles with special treatment.
+\item |texexp| is used for untitled examples,
+\item |texexptitled| is used for titled examples,
+\item |texexptitledspec| is used for titled examples with special treatment.
 \end{itemize}
 
 \inputpreamblelisting{D}

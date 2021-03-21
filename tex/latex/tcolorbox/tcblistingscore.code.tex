@@ -1,8 +1,8 @@
-%% The LaTeX package tcolorbox - version 4.13 (2018/03/22)
+%% The LaTeX package tcolorbox - version 4.42 (2020/10/09)
 %% tcblistingscode.code.tex: Auxiliary code for colorboxes with listings
 %%
 %% -------------------------------------------------------------------------------------------
-%% Copyright (c) 2006-2018 by Prof. Dr. Dr. Thomas F. Sturm <thomas dot sturm at unibw dot de>
+%% Copyright (c) 2006-2020 by Prof. Dr. Dr. Thomas F. Sturm <thomas dot sturm at unibw dot de>
 %% -------------------------------------------------------------------------------------------
 %%
 %% This work may be distributed and/or modified under the
@@ -18,7 +18,7 @@
 %% This work consists of all files listed in README
 %%
 %\makeatletter
-\tcb@set@library@version{4.13}
+\tcb@set@library@version{4.42}
 
 \tcbuselibrary{pro@cessing}
 
@@ -41,8 +41,8 @@
 
 \newenvironment{tcb@lower@outside}[1]{%
   \tcbset{savedelimiter=tcb@lower@outside}\tcb@minipage{#1}%
-  \color{tcbcol@lower}\kvtcb@fontlower\kvtcb@halignlower\kvtcb@before@lower\ignorespaces}%
-  {\ifvmode\else\unskip\fi\kvtcb@after@lower\endminipage}
+  \color{tcbcollower}\kvtcb@fontlower\kvtcb@halignlower\tcb@insert@before@lower}%
+  {\tcb@insert@after@lower\endminipage}
 
 \def\tcb@use@listing@other@reset{%
   \tcbset{every box on layer 1/.style={reset,every box}}%
@@ -178,11 +178,11 @@
 \tcbset{%
   listing file/.store in=\kvtcb@listingfile,%
   comment/.store in=\kvtcb@listingcomment,%
-  listing@process@inside/.code 2 args={%
+  listing@process@inside/.code n args={2}{%
     \let\tcb@inputlisting\tcb@inputlisting@inside%
     \let\tcb@listing@process=#1%
     \let\tcb@use@listing@other=#2},%
-  listing@process@outside/.code 2 args={%
+  listing@process@outside/.code n args={2}{%
     \let\tcb@inputlisting=#1%
     \let\tcb@use@listing@other=#2},%
   listing only/.style={listing@process@inside={\tcb@listing@listing}{\tcbuselistingtext}},%

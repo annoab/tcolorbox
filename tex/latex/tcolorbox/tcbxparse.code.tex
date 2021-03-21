@@ -1,8 +1,8 @@
-%% The LaTeX package tcolorbox - version 4.13 (2018/03/22)
+%% The LaTeX package tcolorbox - version 4.42 (2020/10/09)
 %% tcbxparse.code.tex: Code for xparse features
 %%
 %% -------------------------------------------------------------------------------------------
-%% Copyright (c) 2006-2018 by Prof. Dr. Dr. Thomas F. Sturm <thomas dot sturm at unibw dot de>
+%% Copyright (c) 2006-2020 by Prof. Dr. Dr. Thomas F. Sturm <thomas dot sturm at unibw dot de>
 %% -------------------------------------------------------------------------------------------
 %%
 %% This work may be distributed and/or modified under the
@@ -18,14 +18,20 @@
 %% This work consists of all files listed in README
 %%
 %\makeatletter
-\tcb@set@library@version{4.13}
+\tcb@set@library@version{4.42}
 
 \RequirePackage{xparse}[2013/12/31]
 
 \tcbset{%
-  IfNoValueTF/.code args={#1#2#3}{\IfNoValueTF{#1}{\pgfkeysalso{#2}}{\pgfkeysalso{#3}}},
-  IfValueTF/.code args={#1#2#3}{\IfValueTF{#1}{\pgfkeysalso{#2}}{\pgfkeysalso{#3}}},
-  IfBooleanTF/.code args={#1#2#3}{\IfBooleanTF{#1}{\pgfkeysalso{#2}}{\pgfkeysalso{#3}}},
+  IfNoValueTF/.code n args={3}{\IfNoValueTF{#1}{\pgfkeysalso{#2}}{\pgfkeysalso{#3}}},
+  IfNoValueT/.code n args={2}{\IfNoValueT{#1}{\pgfkeysalso{#2}}},
+  IfNoValueF/.code n args={2}{\IfNoValueF{#1}{\pgfkeysalso{#2}}},
+  IfValueTF/.code n args={3}{\IfValueTF{#1}{\pgfkeysalso{#2}}{\pgfkeysalso{#3}}},
+  IfValueT/.code n args={2}{\IfValueT{#1}{\pgfkeysalso{#2}}},
+  IfValueF/.code n args={2}{\IfValueF{#1}{\pgfkeysalso{#2}}},
+  IfBooleanTF/.code n args={3}{\IfBooleanTF{#1}{\pgfkeysalso{#2}}{\pgfkeysalso{#3}}},
+  IfBooleanT/.code n args={2}{\IfBooleanT{#1}{\pgfkeysalso{#2}}},
+  IfBooleanF/.code n args={2}{\IfBooleanF{#1}{\pgfkeysalso{#2}}},
   verbatim/.style={fontupper=\ttfamily,nobeforeafter,tcbox raise base,top=0pt,bottom=0pt,left=1mm,right=1mm,boxrule=0.3mm}
 }
 
@@ -232,6 +238,13 @@
 \def\tcb@sbs@content@right{\tcb@sbs@text@left\tcblower\box\tcb@lowerbox}
 \def\tcb@sbs@content@both{\box\tcb@upperbox\tcblower\box\tcb@lowerbox}
 
+\def\tcb@sbs@save@upper{%
+  \sbox{\tcb@upperbox}{\color{tcbcolupper}\kvtcb@fontupper\kvtcb@halignupper\tcb@insert@before@upper\tcb@sbs@text@left\tcb@insert@after@upper}%
+}
+\def\tcb@sbs@save@lower{%
+  \sbox{\tcb@lowerbox}{\color{tcbcollower}\kvtcb@fontlower\kvtcb@halignlower\tcb@insert@before@lower\tcb@sbs@text@right\tcb@insert@after@lower}%
+}
+
 \tcbset{%
   sidebyside adapt/.is choice,
   sidebyside adapt/none/.style={%
@@ -241,19 +254,19 @@
   },
   sidebyside adapt/left/.style={%
     sidebyside@adapt@process/.style={%
-      code={\sbox{\tcb@upperbox}{\tcb@sbs@text@left}\let\tcb@sbs@content\tcb@sbs@content@left},
+      code={\tcb@sbs@save@upper\let\tcb@sbs@content\tcb@sbs@content@left},
       lefthand width=\wd\tcb@upperbox,
     }%
   },
   sidebyside adapt/right/.style={%
     sidebyside@adapt@process/.style={%
-      code={\sbox{\tcb@lowerbox}{\tcb@sbs@text@right}\let\tcb@sbs@content\tcb@sbs@content@right},
+      code={\tcb@sbs@save@lower\let\tcb@sbs@content\tcb@sbs@content@right},
       righthand width=\wd\tcb@lowerbox,
     }%
   },
   sidebyside adapt/both/.style={%
     sidebyside@adapt@process/.style={%
-      code={\sbox{\tcb@upperbox}{\tcb@sbs@text@left}\sbox{\tcb@lowerbox}{\tcb@sbs@text@right}\let\tcb@sbs@content\tcb@sbs@content@both},
+      code={\tcb@sbs@save@upper\tcb@sbs@save@lower\let\tcb@sbs@content\tcb@sbs@content@both},
       text width=\wd\tcb@upperbox+\kvtcb@sbs@gap+\wd\tcb@lowerbox,
       lefthand width=\wd\tcb@upperbox,
     }%
