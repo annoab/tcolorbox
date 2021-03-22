@@ -1,9 +1,9 @@
 % !TeX root = tcolorbox.tex
 % include file of tcolorbox.tex (manual of the LaTeX package tcolorbox)
 \clearpage
-\section{Crédits images}%
+\section{Picture Credits}%
 \tcbset{external/prefix=external/picturecredits_}%
-Les images suivantes ont été utilisées dans cette documentation.
+The following pictures were used inside this documentation.
 
 \DeclareTotalTColorBox{\diabox}{ O{} v  m }
   { bicolor,fonttitle=\bfseries\ttfamily,adjusted title={#2},center title,
@@ -16,18 +16,18 @@ Les images suivantes ont été utilisées dans cette documentation.
 \diabox{Basilica_5.png}{
   \url{http://commons.wikimedia.org/wiki/File:Basilica_5.png}}
 \diabox{lichtspiel.jpg}{
-  Photographie prise par Thomas F.~Sturm.}
+  Photograph taken by Thomas F.~Sturm.}
 \diabox{crinklepaper.png}{%
-  Créée avec |GIMP|.\\
+  Created with |GIMP|.\\
   \url{http://www.gimp.org}}
 \diabox{pink_marble.png}{%
-  Créée avec |GIMP|.\\
+  Created with |GIMP|.\\
   \url{http://www.gimp.org}}
 \diabox{blueshade.png}{%
-  Créée avec |GIMP|.\\
+  Created with |GIMP|.\\
   \url{http://www.gimp.org}}
 \diabox{goldshade.png}{%
-  Créée avec |GIMP|.\\
+  Created with |GIMP|.\\
   \url{http://www.gimp.org}}
 \end{tcbraster}
 
