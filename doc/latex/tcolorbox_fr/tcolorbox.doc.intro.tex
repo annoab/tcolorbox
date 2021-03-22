@@ -3,24 +3,57 @@
 \clearpage
 \section{Introduction}%
 \tcbset{external/prefix=external/intro_}%
-The package originates from the first edition of my book
-\flqq{\citetitle{sturm:latex}\frqq~\cite{sturm:latex}
-in about 2006.
-For the \LaTeX\ examples and tutorials given there, I wanted to have
-accentuated and colored boxes to display source code and
-compiled text in combination.
-Since, in my opinion, this type of boxes is also quite useful to highlight definitions
-and theorems, I applied them for my lecture notes in
-mathematics \cite{sturm:mathe1,sturm:mathe2,sturm:mathe3}
-as well.
-With this package, you are invited to apply these boxes for similar projects.
+% The package originates from the first edition of my book
+% \flqq{\citetitle{sturm:latex}\frqq~\cite{sturm:latex}
+% in about 2006.
+% For the \LaTeX\ examples and tutorials given there, I wanted to have
+% accentuated and colored boxes to display source code and
+% compiled text in combination.
+% Since, in my opinion, this type of boxes is also quite useful to highlight definitions
+% and theorems, I applied them for my lecture notes in
+% mathematics \cite{sturm:mathe1,sturm:mathe2,sturm:mathe3}
+% as well.
+% With this package, you are invited to apply these boxes for similar projects.
 
-The breaking news for version 2.00 was the support for breakable boxes.
-This feature allows new applications of the package without
-affecting the core package too much if you do not need boxes to break automatically.
-With version 2.20, the often requested \enquote{side by side} mode for listings has been added.
-With version 3.00, boxed titles are introduced together with improved
-customization options for overlays, underlays, finishes, and own code extensions.
+L'origine de la création de ce paquet a été l'écriture de la première édition de mon livre
+\flqq~{\citetitle{sturm:latex}~\frqq~\cite{sturm:latex} vers 2006.
+Dans les exemples \LaTeX\ et les tutoriels fournis dans celui-ci, je désirais utiliser des
+boîtes colorées pour mettre en valeur l'affichage du code source et de la version
+compilée en même temps. Comme à mon avis, ce type de boîtes est également
+assez pratique pour mettre en évidence des définitions et des théorèmes, je les ai
+également  utilisés dans mes cours de mathématiques
+\cite{sturm:mathe1,sturm:mathe2,sturm:mathe3}.
+Grâce à ce paquet, je vous invite à utiliser ces boîtes pour des projets similaires.
+
+% The breaking news for version 2.00 was the support for breakable boxes.
+% This feature allows new applications of the package without
+% affecting the core package too much if you do not need boxes to break automatically.
+% With version 2.20, the often requested \enquote{side by side} mode for listings has been added.
+% With version 3.00, boxed titles are introduced together with improved
+% customization options for overlays, underlays, finishes, and own code extensions.
+
+La nouveauté pour la version 2.00 était la prise en charge de boîtes divisibles.
+Ce comportement permit de nouveaux usages pour ce paquet sans trop affecter
+le cœur du paquet même si vous n'avez pas besoin de boîtes qui se divisent automatiquement.
+À partir de la version 2.20, le mode «~côte à côte~», très souvent réclamé pour l'écriture de
+programme informatique a été ajouté.
+À partir de la version 2.30, les titres de boîtes ont été introduits ainsi que des
+améliorations des options de personnalisation des sur-couches, sous-couches, finitions et
+des extensions personnelles de code.
+
+
+% \begin{tcolorbox}[enhanced,boxrule=0mm,boxsep=0mm,frame hidden,interior hidden,
+%   left=0mm,right=0mm,top=0mm,bottom=0mm,watermark opacity=0.25,watermark zoom=1.2,before=\par\smallskip,
+%   clip watermark=false,
+%   watermark tikz={%
+%     \path[fill=yellow,draw=yellow!75!red] (0,0) circle (1cm);
+%     \fill[red] (45:5mm) circle (1mm);
+%     \fill[red] (135:5mm) circle (1mm);
+%     \draw[line width=1mm,red] (215:5mm) arc (215:325:5mm);}]
+% Since the first public release in 2011, I received a lot of feedback from all over the world.
+% I want to thank all who wrote me for supporting this package by sending bug reports
+% and ideas for new or better features.
+% \end{tcolorbox}
 
 \begin{tcolorbox}[enhanced,boxrule=0mm,boxsep=0mm,frame hidden,interior hidden,
   left=0mm,right=0mm,top=0mm,bottom=0mm,watermark opacity=0.25,watermark zoom=1.2,before=\par\smallskip,
@@ -30,187 +63,327 @@ customization options for overlays, underlays, finishes, and own code extensions
     \fill[red] (45:5mm) circle (1mm);
     \fill[red] (135:5mm) circle (1mm);
     \draw[line width=1mm,red] (215:5mm) arc (215:325:5mm);}]
-Since the first public release in 2011, I received a lot of feedback from all over the world.
-I want to thank all who wrote me for supporting this package by sending bug reports
-and ideas for new or better features.
+Depuis la première version publique en 2011, j'ai reçu beaucoup de commentaires du monde entier.
+J'aimerais remercier tous ceux qui m'ont écrit pour soutenir ce paquet en m'envoyant des
+rapports d'anomalie et des idées pour de nouvelles fonctionnalités ou améliorations.
 \end{tcolorbox}
 
 
+
 \subsection{Installation}
-Typically, |tcolorbox| will be installed as part of a major \LaTeX\ distribution
-and there is nothing special to do for a user.
+% Typically, |tcolorbox| will be installed as part of a major \LaTeX\ distribution
+% and there is nothing special to do for a user.
 
-If you intend to make a local
-installation \emph{by hand}, see the |README| file of the |tcolorbox| package
-for some hints. The short story is: you have to install not only
-|tcolorbox.sty|, but also all |*.code.tex| files in the local |texmf| tree.
+En général, |tcolorbox| est déjà installé dans le cadre d'une distribution
+ \LaTeX\ principale et vous n'avez rien de spécial à faire en tant qu'utilisateur.
 
+% If you intend to make a local
+% installation \emph{by hand}, see the |README| file of the |tcolorbox| package
+% for some hints. The short story is: you have to install not only
+% |tcolorbox.sty|, but also all |*.code.tex| files in the local |texmf| tree.
 
-\subsection{Loading the Package}
-The base package |tcolorbox| loads the packages
-|pgf| \cite{tantau:tikz_and_pgf}, |verbatim| \cite{schoepf:2001a},
-|etoolbox| \cite{lehmann:etoolbox},
-and |environ| \cite{robertson:2014a}.
-|tcolorbox| itself is loaded in the usual manner in the preamble:
+Si vous désirez faire une installation locale  \emph{par vous même}, lisez le fichier
+|README| du paquet |tcolorbox| pour avoir des conseils. Pour faire bref, vous devez non
+seulement installer |tcolorbox.sty|, mais aussi tous les fichiers |*.code.tex| dans
+l'arborescence locale |texmf|.
+
+\subsection{Chargement du paquet}
+% The base package |tcolorbox| loads the packages
+% |pgf| \cite{tantau:tikz_and_pgf}, |verbatim| \cite{schoepf:2001a},
+% |etoolbox| \cite{lehmann:etoolbox},
+% and |environ| \cite{robertson:2014a}.
+% |tcolorbox| itself is loaded in the usual manner in the preamble:
+% \begin{dispListing}
+% \usepackage{tcolorbox}
+% \end{dispListing}
+% The package takes option keys in the key-value syntax.
+% Alternatively, you may use these keys later in the preamble with
+% \refCom{tcbuselibrary} (see there).
+% For example, the key to typeset listings is:
+% \begin{dispListing}
+% \usepackage[listings]{tcolorbox}
+% \end{dispListing}
+
+Le paquet de base |tcolorbox| charge les paquets |pgf| \cite{tantau:tikz_and_pgf},
+|verbatim| \cite{schoepf:2001a}, |etoolbox| \cite{lehmann:etoolbox} et |environ|
+\cite{robertson:2014a}.
+|tcolorbox| lui-même se charge de manière classique dans le préambule de la manière suivante~:
 \begin{dispListing}
 \usepackage{tcolorbox}
 \end{dispListing}
-The package takes option keys in the key-value syntax.
-Alternatively, you may use these keys later in the preamble with
-\refCom{tcbuselibrary} (see there).
-For example, the key to typeset listings is:
+Le paquet possède des options et utilise une syntaxe de type clé-valeur.
+Vous pouvez également utiliser ces options plus tard dans le préambule en utilisant
+\refCom{tcbuselibrary} (voir ici).
+Par exemple, pour utiliser l'option |listings|, la syntaxe est~:
 \begin{dispListing}
 \usepackage[listings]{tcolorbox}
 \end{dispListing}
 
 
-\clearpage
-\subsection{Libraries}\label{sec:bibliothek}
-The base package |tcolorbox| is extendable by program libraries.
-This is done by using option keys while loading the package or inside
-the preamble by applying the following macro with the same set of keys.
 
-\begin{docCommand}{tcbuselibrary}{\marg{key list}}
-  Loads the libraries given by the \meta{key list}.
+\clearpage
+\subsection{Bibliothèques}\label{sec:bibliothek}
+% The base package |tcolorbox| is extendable by program libraries.
+% This is done by using option keys while loading the package or inside
+% the preamble by applying the following macro with the same set of keys.
+
+% \begin{docCommand}{tcbuselibrary}{\marg{key list}}
+%   Loads the libraries given by the \meta{key list}.
+% \begin{dispListing}
+% \tcbuselibrary{listings,theorems}
+% \end{dispListing}
+% \end{docCommand}
+
+Le paquet de base |tcolorbox| est extensible grâce des bibliothèques de programmes.
+Pour cela, il suffit de lister les clés d'option au moment du chargement du paquet
+ou, dans le préambule, en appelant la macro suivante avec le même ensemble de clés
+
+\begin{docCommand}{tcbuselibrary}{\marg{liste de clés}}
+  Charge les bibliothèques énumérées dans la \meta{liste de clés}.
 \begin{dispListing}
 \tcbuselibrary{listings,theorems}
 \end{dispListing}
 \end{docCommand}
 
-The following keys are used inside |\tcbuselibrary| respectively
-|\usepackage| without the key tree path |/tcb/library/|.
+
+% The following keys are used inside |\tcbuselibrary| respectively
+% |\usepackage| without the key tree path |/tcb/library/|.
+
+Les clés suivantes peuvent être utilisées dans |\tcbuselibrary| (ou dans
+|\usepackage|) sans avoir à saisir le chemin de l'arborescence des clés |/tcb/library/|.
+
+% \begin{docTcbKey}[library]{skins}{}{\mylib{skins}}
+%   Loads the package |tikz| \cite{tantau:tikz_and_pgf} and provides additional
+%   styles (skins) for the appearance of the colored boxes; see
+%   Section~\ref{sec:skins} from page~\pageref{sec:skins}.
+% \end{docTcbKey}
 
 \begin{docTcbKey}[library]{skins}{}{\mylib{skins}}
-  Loads the package |tikz| \cite{tantau:tikz_and_pgf} and provides additional
-  styles (skins) for the appearance of the colored boxes; see
-  Section~\ref{sec:skins} from page~\pageref{sec:skins}.
+  Charge le paquet |tikz| \cite{tantau:tikz_and_pgf} et fournit des styles supplémentaires
+  (skins) pour l'apparence des boîtes colorées~; consultez la
+  section~\ref{sec:skins} à la page~\pageref{sec:skins}.
 \end{docTcbKey}
+
+% \begin{docTcbKey}[library]{vignette}{}{\mylib{vignette}}
+%   Provides code for more ornamental; see
+%   Section~\ref{sec:vignette} from page~\pageref{sec:vignette}.
+% \end{docTcbKey}
 
 \begin{docTcbKey}[library]{vignette}{}{\mylib{vignette}}
-  Provides code for more ornamental; see
-  Section~\ref{sec:vignette} from page~\pageref{sec:vignette}.
+  Fournit du code pour plus d'ornements~; consultez la
+  section~\ref{sec:vignette} à la page~\pageref{sec:vignette}.
 \end{docTcbKey}
+
+% \begin{docTcbKey}[library]{raster}{}{\mylib{raster}}
+%   Provides additional macros and options for typesetting multiple
+%   boxes arranged in a kind of raster;
+%   see Section~\ref{sec:raster} from page~\pageref{sec:raster}.
+% \end{docTcbKey}
 
 \begin{docTcbKey}[library]{raster}{}{\mylib{raster}}
-  Provides additional macros and options for typesetting multiple
-  boxes arranged in a kind of raster;
-  see Section~\ref{sec:raster} from page~\pageref{sec:raster}.
+  Fournit des macros supplémentaires et des options pour saisir plusieurs boîtes
+  arrangées sur une espèce de trame~; consultez la
+  section~\ref{sec:raster} à la page~\pageref{sec:raster}.
 \end{docTcbKey}
+
+% \begin{docTcbKey}[library]{listings}{}{\mylib{listings}}
+%   Loads the package |listings| \cite{hoffmann:listings} and provides additional
+%   macros for typesetting listings which are described in Section~\ref{sec:listings}
+%   from page~\pageref{sec:listings}.
+% \end{docTcbKey}
 
 \begin{docTcbKey}[library]{listings}{}{\mylib{listings}}
-  Loads the package |listings| \cite{hoffmann:listings} and provides additional
-  macros for typesetting listings which are described in Section~\ref{sec:listings}
-  from page~\pageref{sec:listings}.
+  Charge le paquet |listings| \cite{hoffmann:listings} et fournit des macros supplémentaires
+  décrites à la section~\ref{sec:listings}
+  à la page~\pageref{sec:listings} pour saisir des programmes informatiques (listings).
 \end{docTcbKey}
+
+% \begin{docTcbKey}[library]{listingsutf8}{}{\mylib{listingsutf8}}
+%   Loads the packages |listings| \cite{hoffmann:listings} and
+%   |listingsutf8| \cite{oberdiek:listingsutf8} for UTF-8 support.
+%   This is a variant of the library \mylib{listings}
+%   and is described in Section \ref{sec:listings}
+%   from page~\pageref{sec:listings}.
+% \end{docTcbKey}
 
 \begin{docTcbKey}[library]{listingsutf8}{}{\mylib{listingsutf8}}
-  Loads the packages |listings| \cite{hoffmann:listings} and
-  |listingsutf8| \cite{oberdiek:listingsutf8} for UTF-8 support.
-  This is a variant of the library \mylib{listings}
-  and is described in Section \ref{sec:listings}
-  from page~\pageref{sec:listings}.
+  Charge les paquets  |listings| \cite{hoffmann:listings} et
+  |listingsutf8| \cite{oberdiek:listingsutf8} pour la prise en charge de l'UTF-8.
+  Il s'agit d'une variante de la bibliothèque \mylib{listings}
+  décrite à la section \ref{sec:listings} à la page~\pageref{sec:listings}.
 \end{docTcbKey}
+
+% \begin{docTcbKey}[library]{minted}{}{\mylib{minted}}
+%   Loads the package |minted| \cite{poore:minted} to
+%   typeset listings with the |Pygments| \cite{pygments:web} tool,
+%   also see \Vref{sec:listings}.
+% \end{docTcbKey}
 
 \begin{docTcbKey}[library]{minted}{}{\mylib{minted}}
-  Loads the package |minted| \cite{poore:minted} to
-  typeset listings with the |Pygments| \cite{pygments:web} tool,
-  also see \Vref{sec:listings}.
+  Charge le paquet |minted| \cite{poore:minted} qui permet de saisir des programmes
+  informatiques avec l'outils |Pygments| \cite{pygments:web},
+  consultez également la section \Vref{sec:listings}.
 \end{docTcbKey}
+
+% \begin{docTcbKey}[library]{theorems}{}{\mylib{theorems}}
+%   Provides additional
+%   macros for typesetting theorems which are described in Section~\ref{sec:theorems}
+%   à la page~\pageref{sec:theorems}.
+% \end{docTcbKey}
 
 \begin{docTcbKey}[library]{theorems}{}{\mylib{theorems}}
-  Provides additional
-  macros for typesetting theorems which are described in Section~\ref{sec:theorems}
-  from page~\pageref{sec:theorems}.
+  Fournit des macros supplémentaires pour la saisie de
+  théorèmes comme décrit dans la Section~\ref{sec:theorems}
+  à la page~\pageref{sec:theorems}.
 \end{docTcbKey}
 
+% \begin{docTcbKey}[library]{breakable}{}{\mylib{breakable}}
+%   Provides support for automatic box breaking from one page to another;
+%   see \Fullref{sec:breakable}.
+% \end{docTcbKey}
 
 \begin{docTcbKey}[library]{breakable}{}{\mylib{breakable}}
-  Provides support for automatic box breaking from one page to another;
-  see \Fullref{sec:breakable}.
+  Fournit la prise en charge de la division automatique des boîtes d'une page à la suivante
+  comme décrit \Fullref{sec:breakable}.
 \end{docTcbKey}
+
+% \begin{docTcbKey}[library]{magazine}{}{\mylib{magazine}}
+%   Provides support for storing broken box parts to be used later or
+%   in interchanged order, \Fullref{sec:magazine}.
+% \end{docTcbKey}
 
 \begin{docTcbKey}[library]{magazine}{}{\mylib{magazine}}
-  Provides support for storing broken box parts to be used later or
-  in interchanged order, \Fullref{sec:magazine}.
+  Permet l'enregistrement des différentes parties des boîtes divisées afin de les
+  réutiliser plus tard ou en modifiant leur ordre, \Fullref{sec:magazine}.
 \end{docTcbKey}
+
+% \begin{docTcbKey}[library]{poster}{}{\mylib{poster}}
+%   Provides support for creating posters, \Fullref{sec:poster}.
+% \end{docTcbKey}
 
 \begin{docTcbKey}[library]{poster}{}{\mylib{poster}}
-  Provides support for creating posters, \Fullref{sec:poster}.
+  Permet la création de posters, \Fullref{sec:poster}.
 \end{docTcbKey}
+
+% \begin{docTcbKey}[library]{fitting}{}{\mylib{fitting}}
+%   Provides support for font size adaption of the box content to
+%   the box dimensions;
+%   see Section~\ref{sec:fitting} from page~\pageref{sec:fitting}.
+% \end{docTcbKey}
 
 \begin{docTcbKey}[library]{fitting}{}{\mylib{fitting}}
-  Provides support for font size adaption of the box content to
-  the box dimensions;
-  see Section~\ref{sec:fitting} from page~\pageref{sec:fitting}.
+  Permet l'ajustement de la taille de la police du contenu de la boîte aux
+  dimensions de la boîte~;
+  Consultez la section~\ref{sec:fitting} à la page~\pageref{sec:fitting}.
 \end{docTcbKey}
 
+% \begin{docTcbKey}[library]{hooks}{}{\mylib{hooks}}
+%   Extends several option keys to 'hookable' keys;
+%   see Section~\ref{sec:hooks} from page~\pageref{sec:hooks}.
+% \end{docTcbKey}
+
 \begin{docTcbKey}[library]{hooks}{}{\mylib{hooks}}
-  Extends several option keys to \enquote{hookable} keys;
-  see Section~\ref{sec:hooks} from page~\pageref{sec:hooks}.
+  Rend plusieurs clés d'option «~extensibles~»~;
+  Consultez la section~\ref{sec:hooks} à la page~\pageref{sec:hooks}.
 \end{docTcbKey}
 
 \clearpage
+% \begin{docTcbKey}[library]{xparse}{}{\mylib{xparse}}
+%   Provides document command production with |xparse| for |tcolorbox|;
+%   see Section~\ref{sec:xparse} from page~\pageref{sec:xparse}.
+% \end{docTcbKey}
+
 \begin{docTcbKey}[library]{xparse}{}{\mylib{xparse}}
-  Provides document command production with |xparse| for |tcolorbox|;
-  see Section~\ref{sec:xparse} from page~\pageref{sec:xparse}.
+  Fournit des commandes de production de document avec |xparse| pour |tcolorbox|;
+  consultez la section~\ref{sec:xparse} à la page~\pageref{sec:xparse}.
 \end{docTcbKey}
+
+% \begin{docTcbKey}[library]{external}{}{\mylib{external}}
+%   Provides externalization support for stand-alone document snippets,
+%   see \Fullref{sec:external}.
+% \end{docTcbKey}
 
 \begin{docTcbKey}[library]{external}{}{\mylib{external}}
-  Provides externalization support for stand-alone document snippets,
-  see \Fullref{sec:external}.
+  Permet la prise en charge de l'externalisation de fichiers indépendants contenants
+  des extraits de code, consultez la section \Fullref{sec:external}.
 \end{docTcbKey}
+
+% \begin{docTcbKey}[library]{documentation}{}{\mylib{documentation}}
+%   Provides additional macros for typesetting \LaTeX\ documentations
+%   which are described in Section~\ref{sec:documentation}
+%   from page~\pageref{sec:documentation}.
+% \end{docTcbKey}
 
 \begin{docTcbKey}[library]{documentation}{}{\mylib{documentation}}
-  Provides additional
-  macros for typesetting \LaTeX\ documentations
-  which are described in Section~\ref{sec:documentation}
-  from page~\pageref{sec:documentation}.
+  Fournit des macros supplémentaires pour la saisie de documentation \LaTeX\
+  comme décrit dans la section~\ref{sec:documentation}
+  à la page~\pageref{sec:documentation}.
 \end{docTcbKey}
+
+% \begin{docTcbKey}[library]{many}{}{style, no value}
+%   Loads the libraries \mylib{skins}, \mylib{breakable}, \mylib{raster}, \mylib{hooks},
+%   \mylib{theorems}, \mylib{fitting}, and \mylib{xparse}.
+%   Use this shortcut, if you want to use all features of |tcolorbox|
+%   with exception of typesetting listings and using
+%   the specialized \mylib{documentation} library.
+% \end{docTcbKey}
 
 \begin{docTcbKey}[library]{many}{}{style, no value}
-  Loads the libraries \mylib{skins}, \mylib{breakable}, \mylib{raster}, \mylib{hooks},
-  \mylib{theorems}, \mylib{fitting}, and \mylib{xparse}.
-  Use this shortcut, if you want to use all features of |tcolorbox|
-  with exception of typesetting listings and using
-  the specialized \mylib{documentation} library.
+  Charge les bibliothèques \mylib{skins}, \mylib{breakable}, \mylib{raster}, \mylib{hooks},
+  \mylib{theorems}, \mylib{fitting} et \mylib{xparse}.
+  N'utilisez ce raccourci que si vous avez l'intention
+  d'utiliser toutes les fonctionnalités de |tcolorbox| sauf la saisie de programme
+  informatique et la bibliothèque spécialisée \mylib{documentation}.
 \end{docTcbKey}
+
+% \begin{docTcbKey}[library]{most}{}{style, no value}
+%   Loads all libraries except \mylib{minted} and \mylib{documentation}.
+%   Use this shortcut, if you want to use all features of |tcolorbox|
+%   with exception of using the |minted| package and using
+%   the specialized \mylib{documentation} library.
+% \end{docTcbKey}
 
 \begin{docTcbKey}[library]{most}{}{style, no value}
-  Loads all libraries except \mylib{minted} and \mylib{documentation}.
-  Use this shortcut, if you want to use all features of |tcolorbox|
-  with exception of using the |minted| package and using
-  the specialized \mylib{documentation} library.
+  Charge toutes les bibliothèques sauf \mylib{minted} et \mylib{documentation}.
+  N'utilisez ce raccourci que si vous avez l'intention
+  d'utiliser toutes les fonctionnalités de |tcolorbox|
+  sauf le paquet |minted| et la bibliothèque spécialisée \mylib{documentation}.
 \end{docTcbKey}
 
+% \begin{docTcbKey}[library]{all}{}{style, no value}
+%   Loads all libraries. Use this shortcut only, if you intend to use the
+%   \mylib{documentation} library.
+% \end{docTcbKey}
+
 \begin{docTcbKey}[library]{all}{}{style, no value}
-  Loads all libraries. Use this shortcut only, if you intend to use the
-  \mylib{documentation} library.
+  Charge toutes les bibliothèques. N'utilisez ce raccourci que si vous avez l'intention
+  d'utiliser la bibliothèque \mylib{documentation}.
 \end{docTcbKey}
 
 
 \begin{extcolorbox}[runs=2]{intro_packageoverview}
-  [title={Package \texttt{tcolorbox}},center title,fonttitle=\bfseries,arc=0pt,
+  [title={Paquets \texttt{tcolorbox}},center title,fonttitle=\bfseries,arc=0pt,
   colback=red!10!white,
   interior style={fill tile image*={width=2cm}{pink_marble.png},fill image opacity=0.5},
   colframe=red!50!black]
-  \begin{tcolorbox}[beamer,adjusted title=Basic Features,colframe=blue!50!black,colback=blue!10!white]
-  Base package
+  \begin{tcolorbox}[beamer,adjusted title=Comportement de base,colframe=blue!50!black,colback=blue!10!white]
+  Paquet de base
   \end{tcolorbox}
   \begin{tcbitemize}[raster columns=3,raster before skip=2mm,raster after skip=0pt,
     raster equal height,beamer,colframe=blue!50!black,colback=blue!10!white]
-  \tcbitem[adjusted title=Advanced Features]
+  \tcbitem[adjusted title=Fonctionnalités avancées]
     \mylib{breakable}\\
     \mylib{external}\\
     \mylib{fitting}\\
     \mylib{hooks}\\
     \mylib{magazine}\\
     \mylib{poster}\\
-    \mylib{raster}\\ 
+    \mylib{raster}\\
     \mylib{skins}\\
     \mylib{theorems}\\
     \mylib{vignette}\\
     \mylib{xparse}
-  \tcbitem[adjusted title=Advanced Listings]
+  \tcbitem[adjusted title=Listings avancées]
     \mylib{listings}\\
     \mylib{listingsutf8}
     \tcblower
