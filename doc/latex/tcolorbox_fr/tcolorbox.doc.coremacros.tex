@@ -1,72 +1,64 @@
 % !TeX root = tcolorbox.tex
 % include file of tcolorbox.tex (manual of the LaTeX package tcolorbox)
 \clearpage
-\section{Macros for Box Creation}%
+\section{Macros pour la création des boîtes}%
 \tcbset{external/prefix=external/coremacros_}%
-\begin{docEnvironment}{tcolorbox}{\oarg{options}}
-  This is the main environment to create an accentuated colored text box with
-  rounded corners and, optionally, two parts. The appearance of this box
-  is controlled by numerous options.
-  In the most simple case the source code
+\begin{docEnvironment}[doclang/environment content=Contenu de l'environnement]{tcolorbox}{\oarg{options}}
+  C'est l'environnement le plus important qui permet de créer une boîte de
+  texte mise en évidence de manière colorée avec des angles arrondis et, en
+  option, contenant deux parties. L'apparence de cette boîte est contrôlée
+  par de nombreuses options. L'exemple le plus simple de code source
 
 \begin{dispListing}
 \begin{tcolorbox}
-This is a \textbf{tcolorbox}.
+Voici une boîte \textbf{tcolorbox}.
 \end{tcolorbox}
 \end{dispListing}
 
-creates the following compiled text box:
+crée la boîte de texte compilée suivante
 \begin{tcolorbox}
-This is a \textbf{tcolorbox}.
+Voici une boîte \textbf{tcolorbox}.
 \end{tcolorbox}
 
-The text content of the box can be divided
-in an upper and a lower part
-by the command \refCom{tcblower}. Visually, both parts are separated by a line.
-For example:
-
+Le contenu textuel de la boîte peut être séparé en une partie supérieur «~upper~» et une partie inférieure «~lower~» à l'aide de la commande  \refCom{tcblower}. Les deux parties sont séparées visuellement par une ligne. Par exemple, ce code~:
 \begin{dispListing}
 \begin{tcolorbox}
-This is another \textbf{tcolorbox}.
+Voici une autre boîte \textbf{tcolorbox}.
 \tcblower
-Here, you see the lower part of the box.
+Ici se trouve la partie inférieure de la boîte.
 \end{tcolorbox}
 \end{dispListing}
+crée la boîte suivante~:
 
-This code gives the following box:
 \begin{tcolorbox}
-This is another \textbf{tcolorbox}.
+Voici une autre boîte \textbf{tcolorbox}.
 \tcblower
-Here, you see the lower part of the box.
+Ici se trouve la partie inférieure de la boîte.
 \end{tcolorbox}
 
-The \meta{options} control the appearance and several functions of the boxes,
-see \Vref{sec:optkeys} for the complete list.
-A quick example is given here:
+Les \meta{options} contrôle l'apparence et plusieurs fonctionnalités des boîtes,
+consulter la \Vref{sec:optkeys} pour en avoir la liste complète.
+Un exemple rapide est donné ici~:
 
 \begin{dispExample}
-\begin{tcolorbox}[colback=red!5!white,colframe=red!75!black,title=My nice heading]
-This is another \textbf{tcolorbox}.
+\begin{tcolorbox}[colback=red!5!white,colframe=red!75!black,title=Mon bel en-tête]
+Voici une autre boîte \textbf{tcolorbox}.
 \tcblower
-Here, you see the lower part of the box.
+Ici se trouve la partie inférieure de la boîte.
 \end{tcolorbox}
 \end{dispExample}
 \end{docEnvironment}
 
-
+\clearpage
 \begin{docCommand}{tcblower}{}
-  Used inside \refEnv{tcolorbox} to separate the upper box part from
-  the optional lower box part. The upper and the lower part are treated
-  as separate functional units. If you only want to draw a line, see
+  Cette commande est utilisée à l'intérieur de l'environnement \refEnv{tcolorbox} pour séparer la partie supérieure de la boîte de la partie facultative inférieure de la boîte. Ces deux parties sont traitées comme deux entités fonctionnelles séparées. Si vous voulez seulement tracer une ligne, consultez
   \refCom{tcbline}.
 \end{docCommand}
 
-
-\clearpage
 \begin{docCommand}{tcbset}{\marg{options}}
-  Sets options for every following \refEnv{tcolorbox} inside the current \TeX\ group.
-  By default, this does not apply to nested boxes, see \Vref{subsec:everybox}.\par
-  For example, the colors of the boxes may be defined for the whole document by this:
+  Définit les options de tous les environnements \refEnv{tcolorbox} suivants, à l'intérieur du groupe \TeX\ actuel.
+  Par défaut, elles ne s'appliquent pas aux boîtes imbriquées, voir la \Vref{subsec:everybox}.\par
+  Par exemple, les couleurs des boîtes peuvent être définies pour le document complet par~:
 \begin{dispListing}
 \tcbset{colback=red!5!white,colframe=red!75!black}
 \end{dispListing}
@@ -74,57 +66,54 @@ Here, you see the lower part of the box.
 
 
 \begin{docCommand}{tcbsetforeverylayer}{\marg{options}}
-  Sets options for every following \refEnv{tcolorbox} inside the current \TeX\ group.
-  In contrast to \refCom{tcbset}, this does also
-  apply to nested boxes, see \Vref{subsec:everybox}.
-  Technically, the \meta{options} are appended to the default values for every
-  tcolorbox which are applied by \refKey{/tcb/reset}.\par
-  You should not use this macro, if you are not completely sure that you
-  want to have the \meta{options} also for boxes in boxes (in boxes in boxes \ldots).
+  Définit les options de tous les environnements \refEnv{tcolorbox} suivants, à l'intérieur du groupe \TeX\ actuel.
+  Contrairement à \refCom{tcbset}, celles-ci s'appliquent également aux boîtes imbriquées, voir la \Vref{subsec:everybox}.
+  Techniquement, ces \meta{options} sont ajoutées aux valeurs par défaut de chaque |tcolorbox|, appliquées par la commande \refKey{/tcb/reset}.\par
+  Vous ne devriez pas utiliser cette macro si vous n'êtes pas complètement sûr que vous voulez également appliquer les \meta{options} pour les boîtes dans les boîtes (dans les boîtes, dans les boîtes\ldots).
 \begin{dispExample}
 \tcbset{colback=green!10!white}
 \tcbsetforeverylayer{colframe=red!75!black}
 
-\begin{tcolorbox}[title=All options for this box]
-  This is a tcolorbox.\par\medskip
-  \begin{tcolorbox}[title=Nested box]
-    Note that this nested box has a red frame but no green background.
+\begin{tcolorbox}[title=Toutes les options pour cette boîte]
+  Voici une boîte tcolorbox.\par\medskip
+  \begin{tcolorbox}[title=Boîte imbriquée]
+    Remarquez que cette boîte imbriquée possède bien un cadre rouge mais pas un arrière-plan vert.
   \end{tcolorbox}
 \end{tcolorbox}
 \bigskip
 
 \begin{tcolorbox}[reset]
-  Options given with |\tcbsetforeverylayer| survive a |reset|.
+  Les options définies avec |\tcbsetforeverylayer| survivent à un |reset|.
 \end{tcolorbox}
 \end{dispExample}
 \end{docCommand}
 
 
 \clearpage
-\begin{docCommand}{tcbox}{\oarg{options}\marg{box content}}
-  Creates a colored box which is fitted to the width of the given
-  \meta{box content}. In principle, most \meta{options} for a \refEnv{tcolorbox}
-  can be used for |\tcbox| with some restrictions. A |\tcbox| cannot have
-  a lower part and cannot be broken.
+\begin{docCommand}{tcbox}{\oarg{options}\marg{contenu de la boîte}}
+  Crée une boîte colorée dont la taille est ajustée à la longueur du
+  \meta{contenu de la boîte}. En principe, la plupart des \meta{options} d'une
+  \refEnv{tcolorbox} peuvent être utilisées pour une |\tcbox| avec quelques restrictions.
+  Une boîte |\tcbox| ne peut pas avoir une partie inférieure et ne peut pas être divisée.
 
 \begin{dispExample}
 \tcbset{colframe=blue!50!black,colback=white,colupper=red!50!black,
         fonttitle=\bfseries,nobeforeafter,center title}
 
-Text \tcbox[tcbox raise base]{Hello World}\hfill
+Texte \tcbox[tcbox raise base]{Bonjour}\hfill
 %
 \tcbox[left=0mm,right=0mm,top=0mm,bottom=0mm,boxsep=0mm,
-  toptitle=0.5mm,bottomtitle=0.5mm,title=My table]{%
+  toptitle=0.5mm,bottomtitle=0.5mm,title=Mon tableau]{%
   \arrayrulecolor{blue!50!black}\renewcommand{\arraystretch}{1.2}%
   \begin{tabular}{r|c|l}
-  One   & Two    & Three \\\hline\hline
-  Men   & Mice   & Lions \\\hline
-  Upper & Middle & Lower
+  Un   & Deux    & Trois \\\hline\hline
+  Homme   & Souris   & Lions \\\hline
+  Haut & Milieu & Bas
   \end{tabular}}\hfill
 %
 \tcbox[colback=blue!85!black,
   left=0mm,right=0mm,top=0mm,bottom=0mm,boxsep=1mm,arc=0mm,boxrule=0.5pt,
-  title=My picture]{%
+  title=Mon dessin]{%
   \includegraphics[width=5cm]{Basilica_5.png}}
 \end{dispExample}
 
@@ -133,97 +122,98 @@ Text \tcbox[tcbox raise base]{Hello World}\hfill
 \tcbset{colframe=blue!50!black,colback=white,colupper=red!50!black,
         fonttitle=\bfseries,center title}
 
-% Fixed width box
-\begin{tcolorbox}Hello\\World!\end{tcolorbox}
+% Boîte de longueur fixée
+\begin{tcolorbox}Bonjour\\le monde~!\end{tcolorbox}
 
-% Fitted width box (like hbox or makebox)
-\tcbox{Hello\\World!}
+% Boîte de largeur « ajustée » (comme hbox ou makebox)
+\tcbox{Bonjour\\le monde~!}
 
-% Fitted width box (using a \tikzname\  node)
-\tcbox[tikznode]{Hello\\World!}
+% Boîte de largeur « ajustée » (utilisant un noeud \tikzname)
+\tcbox[tikznode]{Bonjour\\le monde~!}
 \end{dispExample}
 
 \end{docCommand}
 
 \clearpage
 \begin{marker}
-See \Vref{subsec:xparse_tcolorbox} and \Vref{subsec:xparse_tcbox} for more
-elaborate methods to create new environments and commands.
+Consultez la section \ref{subsec:xparse_tcolorbox} à la page \pageref{subsec:xparse_tcolorbox}
+et la section \ref{subsec:xparse_tcbox} à la page \pageref{subsec:xparse_tcboxfit} pour apprendre d'autres méthodes plus élaborées pour créer de nouveaux environnements et nouvelles commandes.
 \end{marker}
 
-\begin{docCommand}{newtcolorbox}{\oarg{init options}\marg{name}\oarg{number}\oarg{default}\marg{options}}
-  Creates a new environment \meta{name} based on \refEnv{tcolorbox}.
-  Basically, |\newtcolorbox| operates like |\newenvironment|. This means,
-  the new environment \meta{name} optionally takes \meta{number} arguments, where
-  \meta{default} is the default value for the optional first argument.
-  The \meta{options} are given to the underlying |tcolorbox|.
-  Note that \refKey{/tcb/savedelimiter} is set to the given \meta{name}
-  automatically.
-  The \meta{init options} allow setting up automatic numbering,
-  see Section \ref{sec:initkeys} from page \pageref{sec:initkeys}.
+\begin{docCommand}{newtcolorbox}{\oarg{options d'initialisation}\marg{nom}\oarg{nombre}\oarg{défaut}\marg{options}}
+  Crée un nouvel environnement appelé \meta{nom} basé sur \refEnv{tcolorbox}.
+  |\newtcolorbox| fonctionne tout simplement comme |\newenvironment|. Cela signifie que 
+  le nouvel environnement \meta{nom} peut prendre en option \meta{nombre} arguments, où
+  \meta{défaut} (qui est également optionnel) est la valeur par défaut du premier argument 
+  de l'environnement qui devient alors optionnel. Les \meta{options} sont transmises 
+  au |tcolorbox| sous-jacent.
+  Notez que \refKey{/tcb/savedelimiter} prend automatiquement comme valeur le \meta{nom} fourni.
+  Les \meta{options d'initialisation} permettent le paramétrage d'une numérotation automatique,
+  consultez la section \ref{sec:initkeys} à la page \pageref{sec:initkeys}.
 \begin{dispExample*}{sbs,lefthand ratio=0.6}
-\newtcolorbox{mybox}{colback=red!5!white,
+\newtcolorbox{maboite}{colback=red!5!white,
   colframe=red!75!black}
 
-\begin{mybox}
-This is my own box.
-\end{mybox}
+\begin{maboite}
+Voici ma boîte personnelle.
+\end{maboite}
 \end{dispExample*}
 
 \begin{dispExample*}{sbs,lefthand ratio=0.6}
-\newtcolorbox{mybox}[1]{colback=red!5!white,
+\newtcolorbox{maboite}[1]{colback=red!5!white,
   colframe=red!75!black,fonttitle=\bfseries,
   title={#1}}
 
-\begin{mybox}{Hello there}
-This is my own box with a mandatory title.
-\end{mybox}
+\begin{maboite}{Salut à tous}
+Voici ma boîte personnelle avec un titre
+obligatoire.
+\end{maboite}
 \end{dispExample*}
 
 \begin{dispExample*}{sbs,lefthand ratio=0.6}
-\newtcolorbox{mybox}[2][]{colback=red!5!white,
+\newtcolorbox{maboite}[2][]{colback=red!5!white,
   colframe=red!75!black,fonttitle=\bfseries,
   colbacktitle=red!85!black,enhanced,
 attach boxed title to top center={yshift=-2mm},
   title={#2},#1}
 
-\begin{mybox}[colback=yellow]{Hello there}
-This is my own box with a mandatory title
-and options.
-\end{mybox}
+\begin{maboite}[colback=yellow]{Salut à tous}
+Voici ma boîte personnelle avec un titre
+obligatoire et des options.
+\end{maboite}
 \end{dispExample*}
 
 \inputpreamblelisting{A}
 
 \begin{dispExample*}{sbs,lefthand ratio=0.6}
-\begin{pabox}[colback=yellow]{Hello there}
-This is my own box with a mandatory
-numbered title and options.
+\begin{pabox}[colback=yellow]{Salut à tous}
+Voici ma boîte personnelle avec un titre
+obligatoire numéroté et des options.
 \end{pabox}
 \end{dispExample*}
 \end{docCommand}
 
 
-\begin{docCommand}{renewtcolorbox}{\oarg{init options}\marg{name}\oarg{number}\oarg{default}\marg{options}}
-  Operates like \refCom{newtcolorbox}, but based on |\renewenvironment| instead of |\newenvironment|.
-  An existing environment is redefined.
+\begin{docCommand}{renewtcolorbox}{\oarg{options d'initialisation}\marg{nom}\oarg{nombre}\oarg{défaut}\marg{options}}
+  Fonctionne comme \refCom{newtcolorbox} mais basé sur |\renewenvironment| au lieu de |\newenvironment|.
+  Un environnement existant est redéfini.
 \end{docCommand}
 
 
 \clearpage
-\begin{docCommand}{newtcbox}{\oarg{init options}\brackets{\texttt{\textbackslash}\meta{name}}\oarg{number}\oarg{default}\marg{options}}
-  Creates a new macro \texttt{\textbackslash}\meta{name} based on \refCom{tcbox}.
-  Basically, |\newtcbox| operates like |\newcommand|.
-  The new macro \texttt{\textbackslash}\meta{name} optionally takes \meta{number}$+1$ arguments, where
-  \meta{default} is the default value for the optional first argument.
-  The \meta{options} are given to the underlying |tcbox|.
-  The \meta{init options} allow setting up automatic numbering,
-  see Section \ref{sec:initkeys} from page \pageref{sec:initkeys}.
+\begin{docCommand}{newtcbox}{\oarg{options d'initialisation}\brackets{\texttt{\textbackslash}\meta{nom}}\oarg{nombre}\oarg{défaut}\marg{options}}
+  Crée une nouvelle macro appelée \texttt{\textbackslash}\meta{nom} basé sur \refCom{tcbox}.
+  |\newtcbox| fonctionne tout simplement comme |\newcommand|.
+  La nouvelle macro \texttt{\textbackslash}\meta{nom} peut prendre  \meta{nombre}$+1$ arguments, où
+  \meta{défaut} est la valeur par défaut du premier
+  argument de l'environnement qui devient optionnel.
+  Les \meta{options} sont transmises au |tcbox| sous-jacent.
+  Les \meta{options d'initialisation} permettent le paramétrage de la numérotation automatique, consultez la section~\ref{sec:initkeys} à la page~\pageref{sec:initkeys}.
 \begin{dispExample*}{sbs,lefthand ratio=0.6}
 \newtcbox{\mybox}{colback=red!5!white,
   colframe=red!75!black}
 
-\mybox{This is my own box.}
+\mybox{Voici ma boîte personnelle.}
 \end{dispExample*}
 
 \begin{dispExample*}{sbs,lefthand ratio=0.6}
@@ -231,7 +221,7 @@ numbered title and options.
   colframe=red!75!black,fonttitle=\bfseries,
   title={#1}}
 
-\mybox{Hello there}{This is my own box.}
+\mybox{Salut à tous}{Voici ma boîte personnelle.}
 \end{dispExample*}
 
 \begin{dispExample*}{sbs,lefthand ratio=0.6}
@@ -239,15 +229,15 @@ numbered title and options.
   colframe=red!75!black,fonttitle=\bfseries,
   title={#2},#1}
 
-\mybox[colback=yellow]{Hello there}%
-  {This is my own box.}
+\mybox[colback=yellow]{Salut à tous}%
+  {Voici ma boîte personnelle.}
 \end{dispExample*}
 
 \inputpreamblelisting{B}
 
 \begin{dispExample*}{sbs,lefthand ratio=0.6}
-\pbbox[colback=yellow]{Hello there}%
-  {This is my own box.}
+\pbbox[colback=yellow]{Salut à tous}%
+  {Voici ma boîte personnelle.}
 \end{dispExample*}
 
 \begin{dispExample}
@@ -268,37 +258,37 @@ The \xmybox[green]{quick} brown \xmybox{fox} \xmybox[blue]{jumps} over the
 
 \end{docCommand}
 
-
-\enlargethispage*{1cm}
-\begin{docCommand}{renewtcbox}{\oarg{init options}\brackets{\texttt{\textbackslash}\rmfamily\meta{name}}\oarg{number}\oarg{default}\marg{options}}
-  Operates like \refCom{newtcbox}, but based on |\renewcommand| instead of |\newcommand|.
-  An existing macro is redefined.
-\end{docCommand}
+%\enlargethispage*{1cm}
 
 \clearpage
+\begin{docCommand}{renewtcbox}{\oarg{options d'initialisation}\brackets{\texttt{\textbackslash}\meta{nom}}\oarg{nombre}\oarg{défaut}\marg{options}}
+  Fonctionne comme \refCom{newtcbox} mais basé sur |\renewcommand| au lieu de |\newcommand|.
+  Une macro existante est redéfinie.
+\end{docCommand}
 
-\begin{docCommand}[doc new=2014-10-20]{tcolorboxenvironment}{\marg{name}\marg{options}}
-  An existing environment \meta{name} is redefined to be boxed inside a
-  |tcolorbox| with the given \meta{options}.
+
+
+\begin{docCommand}[doc new=2014-10-20]{tcolorboxenvironment}{\marg{nom}\marg{options}}
+  L'environnement existant appelé \meta{nom} est redéfini afin d'être mis en boîte dans une
+  |tcolorbox| en utilisant les options \meta{options}.
 \begin{dispExample*}{sbs,lefthand ratio=0.6}
 % tcbuselibrary{skins}
-\newenvironment{myitemize}{%
+\newenvironment{maliste}{%
   \begin{itemize}}{\end{itemize}}
 
-\tcolorboxenvironment{myitemize}{blanker,
+\tcolorboxenvironment{maliste}{blanker,
   before skip=6pt,after skip=6pt,
   borderline west={3mm}{0pt}{red}}
 
-Some text.
-\begin{myitemize}
+Du texte.
+\begin{maliste}
 \item Alpha
 \item Beta
 \item Gamma
-\end{myitemize}
-More text.
+\end{maliste}
+Encore du texte.
 \end{dispExample*}
 
 \medskip
-See further examples in \Vref{subsec:theorems_other}.
+Consultez d'autres exemples à la section \ref{subsec:theorems_other} à la page \pageref{subsec:theorems_other}.
 \end{docCommand}
-

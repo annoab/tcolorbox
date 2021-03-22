@@ -4,7 +4,7 @@
 \begin{tcbverbatimwrite}{\jobname_preamble_A.tex}
 \newtcolorbox[auto counter,number within=section]{pabox}[2][]{%
   colback=red!5!white,colframe=red!75!black,fonttitle=\bfseries,
-  title=Examp.~\thetcbcounter: #2,#1}
+  title=Exemp.~\thetcbcounter: #2,#1}
 \end{tcbverbatimwrite}
 \input{\jobname_preamble_A.tex}
 
@@ -32,7 +32,7 @@
       coltitle=red!50!yellow!3!white,
       fonttitle=\small\sffamily\bfseries, fontupper=\small, fontlower=\small},
   example/.style 2 args={texexp,
-      title={Example \thetcbcounter: #1},label={#2}},
+      title={Exemple \thetcbcounter: #1},label={#2}},
 }
 
 
@@ -51,8 +51,8 @@
   listing file={solutions/texercise\thetcbcounter.tex},
   label={exe:#2},
   record={\string\processsol{solutions/texercise\thetcbcounter.tex}{#2}},
-  title={Exercise \thetcbcounter\hfill\mdseries Solution on page \pageref{sol:#2}},
-  list text={Exercise with solution on page \pageref{sol:#2}},#1}
+  title={Exercice \thetcbcounter\hfill\mdseries Solution en page \pageref{sol:#2}},
+  list text={Exercice avec solution en page \pageref{sol:#2}},#1}
 \end{tcbverbatimwrite}
 \input{\jobname_preamble_E.tex}
 
@@ -141,14 +141,14 @@
     \draw[help lines,step=5mm,yellow!80!black,shift={(interior.north west)}]
       (interior.south west) grid (interior.north east);
     \end{tcbclipinterior}},
-  title={Exercise~\thetcbcounter:},
+  title={Exercice~\thetcbcounter:},
   label={exercise@\thetcbcounter},
   attach title to upper=\quad,
   after upper={\par\hfill\textcolor{green!40!black}%
-    {\itshape Solution on page~\pageref{solution@\thetcbcounter}}},
+    {\itshape Solution en page~\pageref{solution@\thetcbcounter}}},
   lowerbox=ignored,
-  savelowerto=solutions/exercise-\thetcbcounter.tex,
-  record={\string\solution{\thetcbcounter}{solutions/exercise-\thetcbcounter.tex}},
+  savelowerto=solutions/exercice-\thetcbcounter.tex,
+  record={\string\solution{\thetcbcounter}{solutions/exercice-\thetcbcounter.tex}},
   #1
 }
 
@@ -161,7 +161,7 @@
     \draw[help lines,step=5mm,yellow!80!black,shift={(interior.north west)}]
       (interior.south west) grid (interior.north east);
     \end{tcbclipinterior}},
-  title={Solution of Exercise~\ref{exercise@#1} on page~\pageref{exercise@#1}:},
+  title={Solution de l'exercice~\ref{exercise@#1} de la page~\pageref{exercise@#1}:},
   phantomlabel={solution@#1},
   attach title to upper=\par,
 }{\input{#2}}
